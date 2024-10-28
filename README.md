@@ -27,14 +27,14 @@ Recipe-Share_Platform-main/
  git clone https://github.com/username/Recipe-Share_Platform.git
  ```
 2. **Set Up Database:**
- - Create a MySQL database for storing user and recipe data.
- - Import the database schema from `schema.sql` if available.
+ - Create a MySQL database named recipe for storing user and recipe data.
 3. **Configure Database Connection:**
  - Update the database configuration in the PHP files to match your MySQL credentials.
 4. **Start the Server:**
  - Use a local server (e.g., XAMPP or WAMP) or deploy to a PHP-enabled web server.
+ - Create a folde named recipe inside htdocs and place all the above files there.
 ## Usage
-- Navigate to the homepage to view shared recipes.
+- Navigate to the [homepage](https://localhost/recipe/index.php)to view shared recipes.
 - Register or log in to add and manage your recipes.
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.

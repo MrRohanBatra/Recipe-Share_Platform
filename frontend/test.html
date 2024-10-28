@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recipe Sharing Platform</title>
+    <link rel="stylesheet" href="./src/index/style.css">
+    <style>
+    /* Existing styles... */
+
+    .recipes h2 {
+        text-align: center; /* Center the heading */
+        color: #ff5722; /* Bright orange color for consistency with the theme */
+        font-size: 2.5em; /* Increased font size for emphasis */
+        margin-bottom: 20px; /* Space below the heading */
+        text-transform: uppercase; /* Transform text to uppercase for a bold look */
+        letter-spacing: 1px; /* Slightly increase spacing between letters */
+        font-weight: bold; /* Make the heading bold */
+    }
+
+    /* More existing styles... */
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Recipe Sharing Platform</h1>
+    </header>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="#home" class="active">Home</a>
+        <a href="#recipes">Recipes</a>
+        <a href="#" id="openModalBtn">Add Recipe</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <div class="container">
+        <h2>All Recipes</h2> 
+        <div class="recipes">
+            <!-- Recipe cards will be injected here -->
+        </div>
+    
+        <a href="#" class="add-recipe-btn" id="openModalBtn">Add New Recipe</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Recipe Sharing Platform. All rights reserved.</p>
+    </footer>
+
+    <!-- Modal for adding recipe -->
+    <div id="addRecipeModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModalBtn">&times;</span>
+            <h2>Add a New Recipe</h2>
+            <form id="recipeForm">
+                <input type="text" id="title" placeholder="Recipe Title" required />
+                <textarea id="description" placeholder="Recipe Description" required></textarea>
+                <select id="category" required>
+                    <option value="" disabled selected>Select Category</option>
+                    <option value="Main Course">Main Course</option>
+                    <option value="Dessert">Dessert</option>
+                    <option value="Snack">Snack</option>
+                </select>
+                <textarea id="steps" placeholder="Recipe Steps" required></textarea>
+                <button type="submit">Submit Recipe</button>
+            </form>
+            <div id="formMessage" style="color: red; margin-top: 10px;"></div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript code for modal and recipe loading...
+    </script>
+</body>
+</html>

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recipe Sharing Platform</title>
+    <!-- <link rel="stylesheet" href="./frontend/src/index/style.css"> -->
+     <style>body {
+        background-color: #f4f4f4;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+      
+      header {
+        background-color: #ff5722; /* Bright orange */
+        padding: 30px;
+        text-align: center;
+        color: white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+      
+      .navbar {
+        background-color: #ff5722; /* Matching navbar color */
+        overflow: hidden;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      }
+      
+      .navbar a {
+        float: left;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 20px;
+        text-decoration: none;
+        font-size: 18px;
+        transition: background-color 0.3s;
+      }
+      
+      .navbar a:hover {
+        background-color: #e64a19; /* Darker orange */
+        color: white;
+      }
+      
+      .navbar a.active {
+        background-color: #d84315; /* Active link color */
+        color: white;
+      }
+      
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 80px 20px 20px 20px; /* Added top padding for navbar */
+        flex: 1;
+      }
+      
+      .recipes {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 20px;
+      }
+      
+      .recipe-card {
+        background-color: white;
+        border-radius: 10px;
+        margin: 10px;
+        padding: 20px;
+        width: 300px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s, box-shadow 0.2s;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .recipe-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+      }
+      
+      .recipe-card h3 {
+        margin: 0 0 10px;
+        font-size: 20px;
+      }
+      
+      .recipe-card p {
+        line-height: 1.5;
+        color: #666; /* Darker gray for description */
+      }
+      
+      .add-recipe-btn {
+        display: inline-block;
+        padding: 12px 25px;
+        background-color: #ff5722; /* Bright orange */
+        color: white;
+        text-align: center;
+        border-radius: 5px;
+        text-decoration: none;
+        margin-top: 10px;
+        transition: background-color 0.3s;
+      }
+      
+      .add-recipe-btn:hover {
+        background-color: #e64a19; /* Darker orange */
+      }
+      
+      /* Modal styles */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding-top: 60px;
+      }
+      
+      .modal-content {
+        background-color: white;
+        margin: 5% auto;
+        padding: 50px;
+        border: 1px solid #888;
+        width: 400px;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
+      
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+      
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      
+      footer {
+        background-color: #ff5722; /* Bright orange */
+        padding: 15px;
+        text-align: center;
+        color: white;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.2);
+      }
+      
+      input,
+      textarea,
+      select {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+      }
+      
+      button {
+        padding: 12px 25px;
+        background-color: #ff5722; /* Bright orange */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+      }
+      
+      button:hover {
+        background-color: #e64a19; /* Darker orange */
+      }
+      /* About Section Styles */
+      .about {
+      background-color: #f9f9f9; /* Light background color for contrast */
+      padding: 20px;
+      margin: 20px 0; /* Margin to separate it from other sections */
+      border-radius: 8px; /* Rounded corners for a softer look */
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+      }
+      
+      .about h2 {
+      text-align: center; /* Center the heading */
+      color: #333; /* Darker text color for contrast */
+      font-size: 2em; /* Larger font size for emphasis */
+      margin-bottom: 10px; /* Space below the heading */
+      }
+      
+      .about p {
+      text-align: center; /* Center align text for a uniform look */
+      color: #666; /* Lighter text color for readability */
+      font-size: 1.2em; /* Slightly larger font for readability */
+      line-height: 1.6; /* Increased line height for better spacing */
+      }
+      
+      .about .mission {
+      font-weight: bold; /* Make mission statement bold */
+      color: #007BFF; /* Highlight the mission statement */
+      }
+      
+      .about .community {
+      margin-top: 15px; /* Space above community encouragement */
+      }
+      
+      .about .invitation {
+      margin-top: 15px; /* Space above invitation to engage */
+      font-style: italic; /* Italic style for emphasis */
+      color: #007BFF; /* Match the color of the mission statement */
+      }
+      .container h2 {
+      text-align: center; /* Center the heading */
+      color: #333; /* Darker text color for contrast */
+      font-size: 2em; /* Larger font size for emphasis */
+      margin-bottom: 20px; /* Space below the heading */
+      }
+      
+      
+      @media (max-width: 768px) {
+        .navbar a {
+          float: none;
+          width: 100%;
+          text-align: left;
+        }
+      
+        .container {
+          padding-top: 100px; /* Extra padding for smaller screens */
+        }
+      
+        .recipe-card {
+          width: 90%; /* Full width on smaller screens */
+        }
+      }</style>
+</head>
+<body>
+    <header>
+        <h1><br>Welcome to the Recipe Sharing Platform</h1>
+    </header>
+    <div class="navbar">
+        <a href="#home" class="active">Home</a>
+        <a href="#recipes">Recipes</a>
+        <a href="#" id="openModalBtn">Add Recipe</a>
+        <a href="#about">About</a>
+    </div>
+
+    <div class="container" id="recipes">
+        <h2>All Recipes</h2> 
+        <div class="recipes">
+        </div>
+        <a href="#" class="add-recipe-btn" id="openModalBtn">Add New Recipe</a>
+    </div>
+    
+    <section id="about" class="about">
+        <h2>About Us</h2>
+        <p>
+            Welcome to the Recipe Sharing Platform! Our mission is to bring food lovers together by allowing them to share, discover, and enjoy recipes from around the world. Whether you're a seasoned chef or just starting your culinary journey, our platform offers a community where everyone can share their favorite dishes and learn from one another.
+        </p>
+        <p>
+            Here, you can create and manage your own recipes, explore new flavors, and connect with fellow food enthusiasts. We believe that food brings people together, and our goal is to make cooking an enjoyable and shared experience.
+        </p>
+        <p class="invitation">
+            Join us in our journey to celebrate the art of cooking, one recipe at a time! Happy cooking!
+        </p>
+    </section>
+    
+</div>
+
+</div>
+    <footer>
+        <p>&copy; 2024 Recipe Sharing Platform. All rights reserved.</p>
+    </footer>
+    <div id="addRecipeModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModalBtn">&times;</span>
+            <h2>Add a New Recipe</h2>
+            <form id="recipeForm">
+                <input type="text" id="title" placeholder="Recipe Title" required />
+                <textarea id="description" placeholder="Recipe Description" required></textarea>
+                <select id="category" required>
+                    <option value="" disabled selected>Select Category</option>
+                    <option value="Main Course">Main Course</option>
+                    <option value="Dessert">Dessert</option>
+                    <option value="Snack">Snack</option>
+                </select>
+                <textarea id="steps" placeholder="Recipe Steps" required></textarea>
+                <button type="submit">Submit Recipe</button>
+            </form>
+            <div id="formMessage" style="color: red; margin-top: 10px;"></div>
+        </div>
+    </div>
+
+    <script>
+        let recipes = [];
+        function loadRecipes() {
+            fetch("http://localhost/recipe/load_recipes.php")
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok: " + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    recipes = data.recipes; 
+                    displayRecipes(recipes);
+                })
+                .catch((error) => console.error("Error loading recipes:", error));
+        }
+
+       
+        function displayRecipes(recipes) {
+            const recipesContainer = document.querySelector(".recipes");
+            recipesContainer.innerHTML = ""; 
+
+            recipes.forEach((recipe) => {
+                const recipeCard = document.createElement("div");
+                recipeCard.className = "recipe-card";
+                recipeCard.innerHTML = `
+                    <h3>${recipe.title}</h3>
+                    <p>${recipe.description}</p>
+                    <p><strong>Category:</strong> ${recipe.category || "Uncategorized"}</p>
+                    <a href="http://localhost/recipe/recipe_steps.php?id=${recipe.id}">View Steps</a>
+                `;
+                recipesContainer.appendChild(recipeCard);
+            });
+        }
+
+        
+        const openModalBtn = document.getElementById("openModalBtn");
+        const modal = document.getElementById("addRecipeModal");
+        const closeModalBtn = document.getElementById("closeModalBtn");
+
+        openModalBtn.onclick = function () {
+            modal.style.display = "block";
+        };
+
+        closeModalBtn.onclick = function () {
+            modal.style.display = "none";
+            document.getElementById("recipeForm").reset(); 
+            document.getElementById("formMessage").textContent = ""; 
+        };
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                closeModalBtn.onclick(); 
+            }
+        };
+
+        
+        const recipeForm = document.getElementById("recipeForm");
+        recipeForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const title = document.getElementById("title").value;
+            const description = document.getElementById("description").value;
+            const category = document.getElementById("category").value;
+            const steps = document.getElementById("steps").value;
+
+            
+            fetch("http://localhost/recipe/add_recipe.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    title: title,
+                    description: description,
+                    category: category,
+                    steps: steps,
+                }),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.success) {
+                        modal.style.display = "none"; 
+                        loadRecipes();
+                    } else {
+                        document.getElementById("formMessage").textContent = data.message || "Error adding recipe.";
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                    document.getElementById("formMessage").textContent = "An error occurred. Please try again.";
+                });
+        });
+
+       
+        window.onload = loadRecipes;
+    </script>
+</body>
+</html>

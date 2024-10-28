@@ -1,5 +1,6 @@
 # Recipe-Share Platform
-A web-based platform for sharing, browsing, and managing recipes. This application allows us## Features
+A web-based platform for sharing, browsing, and managing recipes. This application allows us
+## Features
 - **User Authentication:** Register and log in to manage your own recipes.
 - **Recipe Management:** Add, view, and browse recipes.
 - **Interactive Frontend:** Clean and user-friendly interface with separate styling for login, re## Project Structure
@@ -37,4 +38,4 @@ Recipe-Share_Platform-main/
 - Navigate to the [homepage](http://localhost/recipe/index.php)to view shared recipes.
 - Register or log in to add and manage your recipes.
 ## License
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under theGNU GENERAL PUBLIC LICENSE. See the LICENSE file for details.

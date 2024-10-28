@@ -34,7 +34,7 @@ Recipe-Share_Platform-main/
  - Use a local server (e.g., XAMPP or WAMP) or deploy to a PHP-enabled web server.
  - Create a folde named recipe inside htdocs and place all the above files there.
 ## Usage
-- Navigate to the [homepage](https://localhost/recipe/index.php)to view shared recipes.
+- Navigate to the [homepage](http://localhost/recipe/index.php)to view shared recipes.
 - Register or log in to add and manage your recipes.
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.

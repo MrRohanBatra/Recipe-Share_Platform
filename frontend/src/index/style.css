@@ -10,7 +10,7 @@ body {
 }
 
 header {
-  background-color: #ff5722; /* Bright orange */
+  background-color: #ff5722;
   padding: 30px;
   text-align: center;
   color: white;
@@ -18,7 +18,7 @@ header {
 }
 
 .navbar {
-  background-color: #ff5722; /* Matching navbar color */
+  background-color: #ff5722;
   overflow: hidden;
   position: fixed;
   top: 0;
@@ -39,19 +39,19 @@ header {
 }
 
 .navbar a:hover {
-  background-color: #e64a19; /* Darker orange */
+  background-color: #e64a19;
   color: white;
 }
 
 .navbar a.active {
-  background-color: #d84315; /* Active link color */
+  background-color: #d84315;
   color: white;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 80px 20px 20px 20px; /* Added top padding for navbar */
+  padding: 80px 20px 20px 20px;
   flex: 1;
 }
 
@@ -86,13 +86,13 @@ header {
 
 .recipe-card p {
   line-height: 1.5;
-  color: #666; /* Darker gray for description */
+  color: #666;
 }
 
 .add-recipe-btn {
   display: inline-block;
   padding: 12px 25px;
-  background-color: #ff5722; /* Bright orange */
+  background-color: #ff5722;
   color: white;
   text-align: center;
   border-radius: 5px;
@@ -102,10 +102,9 @@ header {
 }
 
 .add-recipe-btn:hover {
-  background-color: #e64a19; /* Darker orange */
+  background-color: #e64a19;
 }
 
-/* Modal styles */
 .modal {
   display: none;
   position: fixed;
@@ -144,7 +143,7 @@ header {
 }
 
 footer {
-  background-color: #ff5722; /* Bright orange */
+  background-color: #ff5722;
   padding: 15px;
   text-align: center;
   color: white;
@@ -167,7 +166,7 @@ select {
 
 button {
   padding: 12px 25px;
-  background-color: #ff5722; /* Bright orange */
+  background-color: #ff5722;
   color: white;
   border: none;
   border-radius: 5px;
@@ -177,50 +176,49 @@ button {
 }
 
 button:hover {
-  background-color: #e64a19; /* Darker orange */
+  background-color: #e64a19;
 }
-/* About Section Styles */
 .about {
-background-color: #f9f9f9; /* Light background color for contrast */
+background-color: #f9f9f9;
 padding: 20px;
-margin: 20px 0; /* Margin to separate it from other sections */
-border-radius: 8px; /* Rounded corners for a softer look */
-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+margin: 20px 0;
+border-radius: 8px;
+box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .about h2 {
-text-align: center; /* Center the heading */
-color: #333; /* Darker text color for contrast */
-font-size: 2em; /* Larger font size for emphasis */
-margin-bottom: 10px; /* Space below the heading */
+text-align: center;
+color: #333;
+font-size: 2em;
+margin-bottom: 10px;
 }
 
 .about p {
-text-align: center; /* Center align text for a uniform look */
-color: #666; /* Lighter text color for readability */
-font-size: 1.2em; /* Slightly larger font for readability */
-line-height: 1.6; /* Increased line height for better spacing */
+text-align: center;
+color: #666;
+font-size: 1.2em;
+line-height: 1.6;
 }
 
 .about .mission {
-font-weight: bold; /* Make mission statement bold */
-color: #007BFF; /* Highlight the mission statement */
+font-weight: bold;
+color: #007BFF;
 }
 
 .about .community {
-margin-top: 15px; /* Space above community encouragement */
+margin-top: 15px;
 }
 
 .about .invitation {
-margin-top: 15px; /* Space above invitation to engage */
-font-style: italic; /* Italic style for emphasis */
-color: #007BFF; /* Match the color of the mission statement */
+margin-top: 15px;
+font-style: italic;
+color: #007BFF;
 }
 .container h2 {
-text-align: center; /* Center the heading */
-color: #333; /* Darker text color for contrast */
-font-size: 2em; /* Larger font size for emphasis */
-margin-bottom: 20px; /* Space below the heading */
+text-align: center;
+color: #333;
+font-size: 2em;
+margin-bottom: 20px;
 }
 
 
@@ -232,10 +230,10 @@ margin-bottom: 20px; /* Space below the heading */
   }
 
   .container {
-    padding-top: 100px; /* Extra padding for smaller screens */
+    padding-top: 100px;
   }
 
   .recipe-card {
-    width: 90%; /* Full width on smaller screens */
+    width: 90%;
   }
 }

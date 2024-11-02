@@ -42,6 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: ./frontend/index.html?cmd=".urlencode($cmd));
         exit();
     } else {
+        
         echo "Error: " . $stmt->error;
     }
 

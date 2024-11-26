@@ -37,13 +37,13 @@ function loadRecipes() {
                 allRecipes = data.recipes;
                 displayRecipes(allRecipes);
             } else {
-                console.error('Error: Invalid response format or no recipes found');
+                console.log('Error: Invalid response format or no recipes found');
                 allRecipes = [];
                 displayRecipes(allRecipes);
             }
         })
         .catch(error => {
-            console.error('Error fetching recipes:', error);
+            console.log('Error fetching recipes:', error);
             allRecipes = [];
             displayRecipes(allRecipes);
         });

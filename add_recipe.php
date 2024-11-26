@@ -1,7 +1,7 @@
 <?php
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: POST");
-header("Access-Control-Allow-Headers: Content-Type");
+
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
 
 $servername = "localhost";
@@ -9,31 +9,56 @@ $username = "root";
 $password = "";
 $dbname = "recipe";
 
+
 $conn = new mysqli($servername, $username, $password, $dbname);
-
-
 if ($conn->connect_error) {
-    die(json_encode(["success" => false, "message" => "Connection failed: " . $conn->connect_error]));
-}
-
-$input = json_decode(file_get_contents('php://input'), true);
-
-$stmt = $conn->prepare("INSERT INTO recipes (user_id, title, description, ingredients, instructions, created_at, category) VALUES (?, ?, ?, ?, ?, NOW(), ?)");
-$stmt->bind_param("isssss", $user_id, $title, $description, $ingredients, $instructions, $category);
-
-$user_id = 1; 
-$title = $input['title'] ?? '';
-$description = $input['description'] ?? '';
-$ingredients = $input['ingredients'] ?? ''; 
-$instructions = $input['steps'] ?? '';
-$category = $input['category'] ?? 'Uncategorized';
-if ($stmt->execute()) {
-    echo json_encode(["success" => true, "message" => "Recipe added successfully."]);
-} else {
-    echo json_encode(["success" => false, "message" => "Error adding recipe: " . $stmt->error]);
+    die("Connection failed: " . $conn->connect_error);
 }
 
 
-$stmt->close();
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    
+    if (!isset($_POST['title'], $_POST['description'], $_POST['category'], $_POST['ingredients'], $_POST['steps'], $_POST['image_url'])) {
+        die("Error: All fields are required.");
+    }
+
+   
+    $title = $_POST['title'];
+    $description = $_POST['description'];
+    $category = $_POST['category'];
+    $ingredients = $_POST['ingredients'];
+    $steps = $_POST['steps'];
+    $image_url = $_POST['image_url'];
+
+    if (empty($title) || empty($description) || empty($category) || empty($ingredients) || empty($steps) || empty($image_url)) {
+        die("Error: All fields must be filled.");
+    }
+
+   
+    $sql = "INSERT INTO recipes (title, description, category, ingredients, instructions, image_url)
+            VALUES (?, ?, ?, ?, ?, ?)";
+
+   
+    if ($stmt = $conn->prepare($sql)) {
+       
+        $stmt->bind_param("ssssss", $title, $description, $category, $ingredients, $steps, $image_url);
+
+        
+        if ($stmt->execute()) {
+            
+            header("Location: http://localhost/recipe/frontend/index.html"); 
+            
+        } else {
+            echo "Error: Could not execute query. " . $stmt->error;
+        }
+
+
+        $stmt->close();
+    } else {
+        echo "Error: Could not prepare statement. " . $conn->error;
+    }
+}
+
+
 $conn->close();
 ?>

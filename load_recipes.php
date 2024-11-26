@@ -1,33 +1,29 @@
 <?php
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type");
+    session_start();
+    include 'db_connection.php'; // Assuming this exists
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "recipe";
+    $offset = isset($_GET['offset']) ? (int)$_GET['offset'] : 0;
+    $limit = 10;
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+    $sql = "SELECT id, title, description, category FROM recipes ORDER BY created_at DESC LIMIT ? OFFSET ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ii", $limit, $offset);
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+    if ($stmt->execute()) {
+        $result = $stmt->get_result();
+        $recipes = [];
 
-$sql = "SELECT id, title, description, category FROM recipes ORDER BY created_at DESC";
-$result = $conn->query($sql);
+        while ($row = $result->fetch_assoc()) {
+            $recipes[] = $row;
+        }
 
-$recipes = array();
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-        $recipes[] = $row;
+        echo json_encode(["recipes" => $recipes]);
+    } else {
+        http_response_code(500);
+        echo json_encode(["error" => "Failed to load recipes."]);
     }
-}
 
-echo json_encode([
-    "success" => true,
-    "recipes" => $recipes
-]);
-
-$conn->close();
-?>
+    $stmt->close();
+    $conn->close();
+    ?>
+    

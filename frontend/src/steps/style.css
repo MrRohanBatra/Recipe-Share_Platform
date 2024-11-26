@@ -1,0 +1,114 @@
+
+body {
+    background-color: #f4f4f4;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #ff5722;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.navbar {
+    background-color: #ff5722;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    font-size: 18px;
+    transition: background-color 0.3s;
+}
+
+.navbar a:hover {
+    background-color: #e64a19;
+}
+
+.navbar a.active {
+    background-color: #d84315;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 100px auto 20px;
+    padding: 20px;
+    flex: 1;
+}
+
+.recipe-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Recipe image styling */
+#recipe-image {
+    max-width: 300px; /* Fixed width */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    margin: 20px auto;
+    display: block;
+}
+
+h3 {
+    color: #ff5722;
+    margin-top: 10px;
+}
+
+ol {
+    margin-left: 20px;
+    text-align: left;
+}
+
+footer {
+    background-color: #ff5722;
+    padding: 15px;
+    text-align: center;
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .navbar a {
+        float: none;
+        width: 100%;
+        text-align: left;
+    }
+
+    .container {
+        padding-top: 100px;
+    }
+
+    .recipe-card {
+        width: 90%;
+    }
+
+    #recipe-image {
+        max-width: 90%;
+    }
+}

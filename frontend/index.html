@@ -11,31 +11,31 @@
         <h1><br>Welcome to the Recipe Sharing Platform</h1>
     </header>
     <div class="navbar">
-        <a href="#home" class="active">Home</a>
+        <a href="#home" class="active" style="background-color: #ff5722;">Home</a>
         <a href="#recipes">Recipes</a>
         <a href="#" id="openModalBtn">Add Recipe</a>
         <a href="#about">About</a>
     </div>
-   
+
     <div class="container" id="recipes">
-        <h2>All Recipes</h2> 
+        <h2>All Recipes</h2>
         <div class="search-cantainer">
             <select class="search-item" id="search-box" onchange="searchitems()">
-            <option value="" disabled selected>Select Search Category</option>
-            <option value="Main Course">Main Course</option>
-            <option value="Snacks">Snacks</option>
-            <option value="Dessert">Dessert</option>
-            <option value="Appetizer">Appetizer</option>
-            <option value="Breakfast">Breakfast</option>
-            <option value="Salad">Salad</option>
-            <option value="">Clear filters</option>
+                <option value="" disabled selected>Select Search Category</option>
+                <option value="Main Course">Main Course</option>
+                <option value="Snacks">Snacks</option>
+                <option value="Dessert">Dessert</option>
+                <option value="Appetizer">Appetizer</option>
+                <option value="Breakfast">Breakfast</option>
+                <option value="Salad">Salad</option>
+                <option value="Custom">Custom</option>
+                <option value="">Clear filters</option>
             </select>
         </div>
-        <div class="recipes">
-        </div>
-        <button  class="add-recipe-btn" id="openModalButton">Add New Recipe</button>
+        <div class="recipes"></div>
+        <button class="add-recipe-btn" id="openModalButton">Add New Recipe</button>
     </div>
-    
+
     <section id="about" class="about">
         <h2>About Us</h2>
         <p>
@@ -45,24 +45,19 @@
             Here, you can create and manage your own recipes, explore new flavors, and connect with fellow food enthusiasts. We believe that food brings people together, and our goal is to make cooking an enjoyable and shared experience.
         </p>
         <p class="invitation">
-            Join us in our journey to celebrate the art of cooking, one recipe at a time! Happy cooking!
+            Join us in our journey to celebrate the art of cooking, one recipe at a time!
         </p>
     </section>
-    
-</div>
 
-</div>
-    <footer>
-        <p>&copy; 2024 Recipe Sharing Platform. All rights reserved.</p>
-    </footer>
     <div id="addRecipeModal" class="modal">
         <div class="modal-content">
             <span class="close" id="closeModalBtn">&times;</span>
             <h2>Add a New Recipe</h2>
-            <form id="recipeForm">
-                <input type="text" id="title" placeholder="Recipe Title" required />
-                <textarea id="description" placeholder="Recipe Description" required></textarea>
-                <select id="category" required>
+            <form id="recipeForm" action="http://localhost/recipe/add_recipe.php" method="POST">
+                <input type="text" id="title" name="title" placeholder="Recipe Title" required />
+                <textarea id="description" name="description" placeholder="Recipe Description" required></textarea>
+                
+                <select id="category" name="category" required>
                     <option value="" disabled selected>Select Category</option>
                     <option value="Main Course">Main Course</option>
                     <option value="Dessert">Dessert</option>
@@ -71,19 +66,23 @@
                     <option value="Breakfast">Breakfast</option>
                     <option value="Salad">Salad</option>    
                 </select>
-                <textarea id="steps" placeholder="Recipe Steps" required></textarea>
+                
+                <textarea id="ingredients" name="ingredients" placeholder="Enter Ingredients (comma separated)" required></textarea>
+                <textarea id="steps" name="steps" placeholder="Recipe Steps" required></textarea>
+                
+                <input type="text" id="imageUrl" name="image_url" placeholder="Enter Image URL" required />
+                
                 <button type="submit">Submit Recipe</button>
             </form>
+            
             <div id="formMessage" style="color: red; margin-top: 10px;"></div>
         </div>
     </div>
-    <script src="./src/index/script.js"></script>
-    <script>
-      const search = new URLSearchParams(window.location.search);
-      const cmd = search.get("cmd");
-      if (cmd) {
-        alert(cmd);
-      }
-    </script>
+
+    <footer>
+        <p>Recipe Sharing Platform © 2024</p>
+    </footer>
+
+<script src="./src/index/script.js"></script>
 </body>
 </html>

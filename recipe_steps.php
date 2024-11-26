@@ -23,7 +23,7 @@ if (isset($_GET['id'])) {
         die("Invalid recipe ID");
     }
 
-    $stmt = $conn->prepare("SELECT title, description, ingredients, instructions FROM recipes WHERE id = ?");
+    $stmt = $conn->prepare("SELECT title, description, ingredients, instructions ,image_url FROM recipes WHERE id = ?");
     if (!$stmt) {
         die("Preparation failed: " . $conn->error);
     }
@@ -41,7 +41,8 @@ if (isset($_GET['id'])) {
             'title' => $recipe['title'],
             'description' => $recipe['description'],
             'ingredients' => explode(",", $recipe['ingredients']),
-            'instructions' => explode("\n", $recipe['instructions'])
+            'instructions' => explode("\n", $recipe['instructions']),
+            'image_url'=>$recipe['image_url']
         ];
 
         header('Content-Type: application/json');
